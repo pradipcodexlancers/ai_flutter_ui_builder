@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../controllers/code_preview_controller.dart';
 import 'widgets/regeneration_bottom_sheet.dart';
 import 'widgets/ui_comparison_widget.dart';
@@ -12,7 +13,7 @@ class UiPreviewView extends GetView<CodePreviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Live UI Preview & Comparison'),
+        title: Text('Live UI Preview & Comparison', style: AppTypography.font(fontWeight: FontWeight.bold, fontSize: 18)),
         actions: [
           IconButton(
             tooltip: 'View Flutter Code',
@@ -36,9 +37,9 @@ class UiPreviewView extends GetView<CodePreviewController> {
                   valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryLight),
                 ),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   'Updating UI Preview with new prompt...',
-                  style: TextStyle(
+                  style: AppTypography.font(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,
@@ -73,7 +74,7 @@ class UiPreviewView extends GetView<CodePreviewController> {
               child: OutlinedButton.icon(
                 onPressed: () => RegenerationBottomSheet.show(context, controller),
                 icon: const Icon(Icons.refresh_rounded, size: 18),
-                label: const Text('Regenerate UI'),
+                label: Text('Regenerate UI', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
             const SizedBox(width: 12),
@@ -81,7 +82,7 @@ class UiPreviewView extends GetView<CodePreviewController> {
               child: ElevatedButton.icon(
                 onPressed: controller.copyCodeToClipboard,
                 icon: const Icon(Icons.copy_rounded, size: 18),
-                label: const Text('Copy Flutter Code'),
+                label: Text('Copy Flutter Code', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
           ],

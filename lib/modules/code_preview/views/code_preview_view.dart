@@ -3,6 +3,7 @@ import 'package:flutter_highlight/flutter_highlight.dart';
 import 'package:flutter_highlight/themes/atom-one-dark.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../controllers/code_preview_controller.dart';
 import 'widgets/regeneration_bottom_sheet.dart';
 
@@ -13,7 +14,7 @@ class CodePreviewView extends GetView<CodePreviewController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Dart Code'),
+        title: Text('Flutter Dart Code', style: AppTypography.font(fontWeight: FontWeight.bold, fontSize: 18)),
         actions: [
           IconButton(
             tooltip: 'Live UI Preview & Compare',
@@ -72,9 +73,9 @@ class CodePreviewView extends GetView<CodePreviewController> {
                   color: AppColors.primary.withOpacity(0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
-                child: const Text(
+                child: Text(
                   'Dart / Flutter 3.x',
-                  style: TextStyle(
+                  style: AppTypography.font(
                     fontSize: 11,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryLight,
@@ -84,22 +85,22 @@ class CodePreviewView extends GetView<CodePreviewController> {
               const SizedBox(width: 12),
               Text(
                 '$lines lines  •  $chars chars',
-                style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                style: AppTypography.font(fontSize: 12, color: AppColors.textSecondary),
               ),
             ],
           ),
           InkWell(
             onTap: controller.copyCodeToClipboard,
             borderRadius: BorderRadius.circular(6),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: Row(
                 children: [
-                  Icon(Icons.copy, size: 14, color: AppColors.secondary),
-                  SizedBox(width: 6),
+                  const Icon(Icons.copy, size: 14, color: AppColors.secondary),
+                  const SizedBox(width: 6),
                   Text(
                     'Copy Code',
-                    style: TextStyle(
+                    style: AppTypography.font(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
                       color: AppColors.secondary,
@@ -128,8 +129,7 @@ class CodePreviewView extends GetView<CodePreviewController> {
             language: 'dart',
             theme: atomOneDarkTheme,
             padding: EdgeInsets.zero,
-            textStyle: const TextStyle(
-              fontFamily: 'monospace',
+            textStyle: AppTypography.mono(
               fontSize: 13.0,
               height: 1.45,
             ),
@@ -162,19 +162,19 @@ class CodePreviewView extends GetView<CodePreviewController> {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
+            Text(
               'Regenerating Flutter Code...',
-              style: TextStyle(
+              style: AppTypography.font(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Gemini is updating widgets according to your instructions.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: AppColors.textSecondary),
+              style: AppTypography.font(fontSize: 13, color: AppColors.textSecondary),
             ),
           ],
         ),
@@ -196,7 +196,7 @@ class CodePreviewView extends GetView<CodePreviewController> {
               child: OutlinedButton.icon(
                 onPressed: () => RegenerationBottomSheet.show(context, controller),
                 icon: const Icon(Icons.tune_rounded, size: 18),
-                label: const Text('Regenerate with Prompt'),
+                label: Text('Regenerate with Prompt', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
             const SizedBox(width: 12),
@@ -204,7 +204,7 @@ class CodePreviewView extends GetView<CodePreviewController> {
               child: ElevatedButton.icon(
                 onPressed: controller.goToUiPreview,
                 icon: const Icon(Icons.compare_arrows_rounded, size: 18),
-                label: const Text('Live UI Preview'),
+                label: Text('Live UI Preview', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
           ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/ui_analysis_model.dart';
 import '../../controllers/analysis_controller.dart';
 
@@ -29,13 +30,13 @@ class ColorPaletteCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.palette_outlined, color: AppColors.primaryLight, size: 20),
-              SizedBox(width: 10),
+              const Icon(Icons.palette_outlined, color: AppColors.primaryLight, size: 20),
+              const SizedBox(width: 10),
               Text(
                 'Identified Color Palette',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -44,9 +45,9 @@ class ColorPaletteCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          const Text(
+          Text(
             'Tap any swatch to copy its hex value for Flutter ThemeData.',
-            style: TextStyle(fontSize: 12, color: AppColors.textMuted),
+            style: AppTypography.font(fontSize: 12, color: AppColors.textMuted),
           ),
           const SizedBox(height: 16),
           Wrap(
@@ -98,7 +99,7 @@ class ColorPaletteCard extends StatelessWidget {
               children: [
                 Text(
                   colorItem.name,
-                  style: const TextStyle(
+                  style: AppTypography.font(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,
@@ -106,9 +107,8 @@ class ColorPaletteCard extends StatelessWidget {
                 ),
                 Text(
                   colorItem.hex,
-                  style: const TextStyle(
+                  style: AppTypography.mono(
                     fontSize: 11,
-                    fontFamily: 'monospace',
                     color: AppColors.textSecondary,
                   ),
                 ),

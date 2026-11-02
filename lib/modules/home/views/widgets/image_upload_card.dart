@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../controllers/home_controller.dart';
 import 'sample_screenshots_sheet.dart';
 
@@ -47,19 +48,19 @@ class ImageUploadCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          const Text(
+          Text(
             'Upload UI Screenshot',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Select any mobile or web UI design from your gallery.\nGemini AI will analyze colors, layout and generate Flutter code.',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 13,
               color: AppColors.textSecondary,
               height: 1.4,
@@ -72,13 +73,13 @@ class ImageUploadCard extends StatelessWidget {
               ElevatedButton.icon(
                 onPressed: controller.pickImageFromGallery,
                 icon: const Icon(Icons.photo_library_outlined, size: 18),
-                label: const Text('Choose Photo'),
+                label: Text('Choose Photo', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
               const SizedBox(width: 12),
               OutlinedButton.icon(
                 onPressed: controller.pickImageFromCamera,
                 icon: const Icon(Icons.camera_alt_outlined, size: 18),
-                label: const Text('Camera'),
+                label: Text('Camera', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ],
           ),
@@ -86,9 +87,9 @@ class ImageUploadCard extends StatelessWidget {
           TextButton.icon(
             onPressed: () => SampleScreenshotsSheet.show(context, controller),
             icon: const Icon(Icons.auto_awesome_outlined, size: 16, color: AppColors.secondary),
-            label: const Text(
+            label: Text(
               'Or try a Sample UI Screen',
-              style: TextStyle(color: AppColors.secondary, fontSize: 13),
+              style: AppTypography.font(color: AppColors.secondary, fontSize: 13, fontWeight: FontWeight.w600),
             ),
           ),
         ],
@@ -111,9 +112,9 @@ class ImageUploadCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Selected Screenshot',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -152,8 +153,8 @@ class ImageUploadCard extends StatelessWidget {
                     Text(
                       img.name,
                       maxLines: 2,
-                      overflow: TextTransitions.fade,
-                      style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.font(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -175,7 +176,7 @@ class ImageUploadCard extends StatelessWidget {
                         OutlinedButton.icon(
                           onPressed: controller.pickImageFromGallery,
                           icon: const Icon(Icons.refresh, size: 16),
-                          label: const Text('Replace', style: TextStyle(fontSize: 12)),
+                          label: Text('Replace', style: AppTypography.font(fontSize: 12)),
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                           ),
@@ -190,9 +191,9 @@ class ImageUploadCard extends StatelessWidget {
           const SizedBox(height: 18),
 
           // Optional Custom Instruction Prompt
-          const Text(
+          Text(
             'Additional AI Prompt (Optional)',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: AppColors.textSecondary,
@@ -201,7 +202,7 @@ class ImageUploadCard extends StatelessWidget {
           const SizedBox(height: 8),
           TextField(
             onChanged: (val) => controller.customPrompt.value = val,
-            style: const TextStyle(fontSize: 13, color: AppColors.textPrimary),
+            style: AppTypography.font(fontSize: 13, color: AppColors.textPrimary),
             maxLines: 2,
             decoration: const InputDecoration(
               hintText: 'e.g., Use dark mode theme, make cards 16px rounded, use emerald green accent color...',
@@ -221,7 +222,7 @@ class ImageUploadCard extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: const TextStyle(
+        style: AppTypography.font(
           fontSize: 11,
           fontWeight: FontWeight.w500,
           color: AppColors.textSecondary,
@@ -229,8 +230,4 @@ class ImageUploadCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class TextTransitions {
-  static const TextOverflow fade = TextOverflow.ellipsis;
 }

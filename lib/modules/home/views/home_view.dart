@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/api_key_dialog.dart';
 import 'widgets/image_upload_card.dart';
@@ -41,12 +42,12 @@ class HomeView extends GetView<HomeController> {
             child: const Icon(Icons.flutter_dash, color: Colors.white, size: 20),
           ),
           const SizedBox(width: 12),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'UI Architect AI',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   letterSpacing: -0.2,
@@ -54,7 +55,7 @@ class HomeView extends GetView<HomeController> {
               ),
               Text(
                 'Gemini-Powered Flutter Builder',
-                style: TextStyle(fontSize: 11, color: AppColors.textSecondary),
+                style: AppTypography.font(fontSize: 11, color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -73,7 +74,7 @@ class HomeView extends GetView<HomeController> {
               ),
               label: Text(
                 isConfigured ? 'Gemini Ready' : 'Set API Key',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: isConfigured ? AppColors.success : AppColors.warning,
@@ -143,14 +144,14 @@ class HomeView extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: AppColors.primaryLight.withOpacity(0.3)),
                 ),
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.auto_awesome, size: 14, color: AppColors.primaryLight),
-                    SizedBox(width: 6),
+                    const Icon(Icons.auto_awesome, size: 14, color: AppColors.primaryLight),
+                    const SizedBox(width: 6),
                     Text(
                       'Gemini 2.5 Flash Vision',
-                      style: TextStyle(
+                      style: AppTypography.font(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
                         color: AppColors.primaryLight,
@@ -162,9 +163,9 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
           const SizedBox(height: 12),
-          const Text(
+          Text(
             'Turn Any Screenshot into\nProduction Flutter Code',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 22,
               fontWeight: FontWeight.w800,
               color: AppColors.textPrimary,
@@ -172,9 +173,9 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Upload a screenshot of any mobile or web app screen. Antigravity AI inspects typography, component trees, spacing, and generates production-ready Dart widgets with side-by-side preview.',
-            style: TextStyle(fontSize: 13, color: AppColors.textSecondary, height: 1.45),
+            style: AppTypography.font(fontSize: 13, color: AppColors.textSecondary, height: 1.45),
           ),
         ],
       ),
@@ -192,9 +193,9 @@ class HomeView extends GetView<HomeController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Engine Capabilities',
-          style: TextStyle(
+          style: AppTypography.font(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: AppColors.textSecondary,
@@ -230,7 +231,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Text(
                           f['title'] as String,
-                          style: const TextStyle(
+                          style: AppTypography.font(
                             fontSize: 13,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textPrimary,
@@ -239,7 +240,7 @@ class HomeView extends GetView<HomeController> {
                         const SizedBox(height: 2),
                         Text(
                           f['desc'] as String,
-                          style: const TextStyle(fontSize: 11, color: AppColors.textMuted),
+                          style: AppTypography.font(fontSize: 11, color: AppColors.textMuted),
                         ),
                       ],
                     ),
@@ -276,9 +277,9 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 28),
-            const Text(
+            Text(
               'AI Engine at Work',
-              style: TextStyle(
+              style: AppTypography.font(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: AppColors.textPrimary,
@@ -289,7 +290,7 @@ class HomeView extends GetView<HomeController> {
               () => Text(
                 controller.loadingStatusText.value,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: AppTypography.font(
                   fontSize: 14,
                   color: AppColors.secondary,
                   fontWeight: FontWeight.w500,
@@ -297,10 +298,10 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             const SizedBox(height: 18),
-            const Text(
+            Text(
               'Analyzing visual components, building widget trees & formatting Flutter Dart code...',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: AppColors.textMuted),
+              style: AppTypography.font(fontSize: 12, color: AppColors.textMuted),
             ),
           ],
         ),
@@ -319,9 +320,9 @@ class HomeView extends GetView<HomeController> {
         child: ElevatedButton.icon(
           onPressed: controller.startAnalysisAndGeneration,
           icon: const Icon(Icons.auto_awesome, size: 20),
-          label: const Text(
+          label: Text(
             'Analyze UI & Generate Flutter Code',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            style: AppTypography.font(fontSize: 15, fontWeight: FontWeight.bold),
           ),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),

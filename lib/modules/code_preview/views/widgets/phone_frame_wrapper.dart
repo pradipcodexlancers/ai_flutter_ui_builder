@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class PhoneFrameWrapper extends StatelessWidget {
   final Widget child;
@@ -51,9 +52,9 @@ class PhoneFrameWrapper extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       '9:41',
-                      style: TextStyle(
+                      style: AppTypography.font(
                         color: Colors.white,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,

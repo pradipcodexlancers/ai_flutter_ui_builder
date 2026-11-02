@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/ui_analysis_model.dart';
 
 class TypographyCard extends StatelessWidget {
@@ -21,13 +22,13 @@ class TypographyCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.text_fields_rounded, color: AppColors.secondary, size: 20),
-              SizedBox(width: 10),
+              const Icon(Icons.text_fields_rounded, color: AppColors.secondary, size: 20),
+              const SizedBox(width: 10),
               Text(
                 'Typography Hierarchy',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -55,7 +56,7 @@ class TypographyCard extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '${item.fontSize.toInt()}',
-                      style: const TextStyle(
+                      style: AppTypography.mono(
                         fontSize: 13,
                         fontWeight: FontWeight.bold,
                         color: AppColors.secondary,
@@ -69,7 +70,7 @@ class TypographyCard extends StatelessWidget {
                       children: [
                         Text(
                           item.role,
-                          style: const TextStyle(
+                          style: AppTypography.font(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textPrimary,
@@ -77,7 +78,7 @@ class TypographyCard extends StatelessWidget {
                         ),
                         Text(
                           'Weight: ${item.fontWeight}  •  Color: ${item.colorHex}',
-                          style: const TextStyle(
+                          style: AppTypography.font(
                             fontSize: 11,
                             color: AppColors.textSecondary,
                           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../data/models/ui_analysis_model.dart';
 
 class ComponentsCard extends StatelessWidget {
@@ -24,13 +25,13 @@ class ComponentsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 children: [
-                  Icon(Icons.widgets_outlined, color: AppColors.accent, size: 20),
-                  SizedBox(width: 10),
+                  const Icon(Icons.widgets_outlined, color: AppColors.accent, size: 20),
+                  const SizedBox(width: 10),
                   Text(
                     'Identified UI Components',
-                    style: TextStyle(
+                    style: AppTypography.font(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       color: AppColors.textPrimary,
@@ -46,7 +47,7 @@ class ComponentsCard extends StatelessWidget {
                 ),
                 child: Text(
                   '${components.length} found',
-                  style: const TextStyle(
+                  style: AppTypography.font(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
                     color: AppColors.accent,
@@ -83,7 +84,7 @@ class ComponentsCard extends StatelessWidget {
                           children: [
                             Text(
                               comp.name,
-                              style: const TextStyle(
+                              style: AppTypography.font(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.textPrimary,
@@ -98,7 +99,7 @@ class ComponentsCard extends StatelessWidget {
                               ),
                               child: Text(
                                 comp.type,
-                                style: const TextStyle(
+                                style: AppTypography.font(
                                   fontSize: 10,
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.primaryLight,
@@ -111,7 +112,7 @@ class ComponentsCard extends StatelessWidget {
                           const SizedBox(height: 4),
                           Text(
                             comp.description,
-                            style: const TextStyle(
+                            style: AppTypography.font(
                               fontSize: 12,
                               color: AppColors.textSecondary,
                             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/app_typography.dart';
 
 class DynamicUiRenderer extends StatelessWidget {
   final Map<String, dynamic>? uiSpec;
@@ -241,7 +242,7 @@ class DynamicUiRenderer extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
-      style: TextStyle(
+      style: AppTypography.font(
         fontSize: fontSize,
         fontWeight: fontWeight,
         color: color,

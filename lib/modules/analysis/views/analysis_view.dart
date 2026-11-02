@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_typography.dart';
 import '../controllers/analysis_controller.dart';
 import 'widgets/color_palette_card.dart';
 import 'widgets/components_card.dart';
@@ -13,7 +14,7 @@ class AnalysisView extends GetView<AnalysisController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('UI Analysis & Specs'),
+        title: Text('UI Analysis & Specs', style: AppTypography.font(fontWeight: FontWeight.bold, fontSize: 18)),
         actions: [
           IconButton(
             tooltip: 'Live UI Preview',
@@ -105,9 +106,9 @@ class AnalysisView extends GetView<AnalysisController> {
                     color: AppColors.success.withOpacity(0.15),
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: const Text(
+                  child: Text(
                     'AI Analysis Complete',
-                    style: TextStyle(
+                    style: AppTypography.font(
                       fontSize: 11,
                       fontWeight: FontWeight.w600,
                       color: AppColors.success,
@@ -117,7 +118,7 @@ class AnalysisView extends GetView<AnalysisController> {
                 const SizedBox(height: 8),
                 Text(
                   controller.analysis.value.summary,
-                  style: const TextStyle(
+                  style: AppTypography.font(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,
@@ -127,9 +128,8 @@ class AnalysisView extends GetView<AnalysisController> {
                 const SizedBox(height: 8),
                 Text(
                   'Structure: ${controller.analysis.value.layoutHierarchy}',
-                  style: const TextStyle(
+                  style: AppTypography.mono(
                     fontSize: 11,
-                    fontFamily: 'monospace',
                     color: AppColors.textSecondary,
                   ),
                 ),
@@ -152,13 +152,13 @@ class AnalysisView extends GetView<AnalysisController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.architecture_rounded, color: AppColors.warning, size: 20),
-              SizedBox(width: 10),
+              const Icon(Icons.architecture_rounded, color: AppColors.warning, size: 20),
+              const SizedBox(width: 10),
               Text(
                 'Layout & Responsiveness Architecture',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -169,7 +169,7 @@ class AnalysisView extends GetView<AnalysisController> {
           const SizedBox(height: 10),
           Text(
             controller.analysis.value.responsiveNotes,
-            style: const TextStyle(
+            style: AppTypography.font(
               fontSize: 13,
               color: AppColors.textSecondary,
               height: 1.4,
@@ -194,7 +194,7 @@ class AnalysisView extends GetView<AnalysisController> {
               child: OutlinedButton.icon(
                 onPressed: controller.goToUiPreview,
                 icon: const Icon(Icons.compare_arrows_rounded, size: 18),
-                label: const Text('Live UI Preview'),
+                label: Text('Live UI Preview', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
             const SizedBox(width: 12),
@@ -202,7 +202,7 @@ class AnalysisView extends GetView<AnalysisController> {
               child: ElevatedButton.icon(
                 onPressed: controller.goToCodePreview,
                 icon: const Icon(Icons.code_rounded, size: 18),
-                label: const Text('View Dart Code'),
+                label: Text('View Dart Code', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
             ),
           ],

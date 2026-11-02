@@ -1,6 +1,7 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../controllers/home_controller.dart';
 
 class SampleScreenshotsSheet extends StatelessWidget {
@@ -38,18 +39,18 @@ class SampleScreenshotsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Try with Sample UI Presets',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 18,
               fontWeight: FontWeight.bold,
               color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(height: 6),
-          const Text(
+          Text(
             'Test the Gemini AI conversion instantly with these pre-designed mobile screens.',
-            style: TextStyle(fontSize: 13, color: AppColors.textSecondary),
+            style: AppTypography.font(fontSize: 13, color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
           _buildSampleOption(
@@ -128,7 +129,7 @@ class SampleScreenshotsSheet extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: AppTypography.font(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -137,7 +138,7 @@ class SampleScreenshotsSheet extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     description,
-                    style: const TextStyle(fontSize: 12, color: AppColors.textMuted),
+                    style: AppTypography.font(fontSize: 12, color: AppColors.textMuted),
                   ),
                 ],
               ),

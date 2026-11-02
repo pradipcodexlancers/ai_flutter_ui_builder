@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import 'dynamic_ui_renderer.dart';
 import 'phone_frame_wrapper.dart';
 
@@ -136,7 +137,7 @@ class _UiComparisonWidgetState extends State<UiComparisonWidget> {
             const SizedBox(width: 6),
             Text(
               label,
-              style: TextStyle(
+              style: AppTypography.font(
                 fontSize: 12,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
@@ -363,7 +364,7 @@ class _UiComparisonWidgetState extends State<UiComparisonWidget> {
       ),
       child: Text(
         text,
-        style: const TextStyle(
+        style: AppTypography.font(
           color: Colors.white,
           fontSize: 11,
           fontWeight: FontWeight.w600,

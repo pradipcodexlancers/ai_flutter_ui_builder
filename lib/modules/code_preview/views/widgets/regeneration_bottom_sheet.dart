@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../controllers/code_preview_controller.dart';
 
 class RegenerationBottomSheet extends StatefulWidget {
@@ -76,9 +77,9 @@ class _RegenerationBottomSheetState extends State<RegenerationBottomSheet> {
                 child: const Icon(Icons.auto_awesome, color: AppColors.primaryLight, size: 20),
               ),
               const SizedBox(width: 12),
-              const Text(
+              Text(
                 'Regenerate with Additional Prompts',
-                style: TextStyle(
+                style: AppTypography.font(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
@@ -87,9 +88,9 @@ class _RegenerationBottomSheetState extends State<RegenerationBottomSheet> {
             ],
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Ask Gemini to modify colors, refine responsive layout, or add interactive state logic.',
-            style: TextStyle(fontSize: 12, color: AppColors.textSecondary),
+            style: AppTypography.font(fontSize: 12, color: AppColors.textSecondary),
           ),
           const SizedBox(height: 16),
 
@@ -101,7 +102,7 @@ class _RegenerationBottomSheetState extends State<RegenerationBottomSheet> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 8),
                   child: ActionChip(
-                    label: Text(suggestion, style: const TextStyle(fontSize: 12)),
+                    label: Text(suggestion, style: AppTypography.font(fontSize: 12)),
                     backgroundColor: AppColors.surfaceLight.withOpacity(0.5),
                     side: const BorderSide(color: AppColors.surfaceBorder),
                     onPressed: () {
@@ -121,9 +122,10 @@ class _RegenerationBottomSheetState extends State<RegenerationBottomSheet> {
             controller: _promptController,
             maxLines: 3,
             autofocus: true,
-            style: const TextStyle(fontSize: 14, color: AppColors.textPrimary),
-            decoration: const InputDecoration(
+            style: AppTypography.font(fontSize: 14, color: AppColors.textPrimary),
+            decoration: InputDecoration(
               hintText: 'e.g., Change primary color to deep purple, convert into a StatefulWidget with form validation, make buttons 56px height...',
+              hintStyle: AppTypography.font(color: AppColors.textMuted, fontSize: 13),
             ),
           ),
           const SizedBox(height: 20),
@@ -140,7 +142,7 @@ class _RegenerationBottomSheetState extends State<RegenerationBottomSheet> {
                 }
               },
               icon: const Icon(Icons.refresh_rounded, size: 18),
-              label: const Text('Apply Changes & Regenerate Code'),
+              label: Text('Apply Changes & Regenerate Code', style: AppTypography.font(fontWeight: FontWeight.bold)),
             ),
           ),
           const SizedBox(height: 12),

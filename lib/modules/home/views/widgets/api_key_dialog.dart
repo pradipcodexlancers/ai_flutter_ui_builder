@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_typography.dart';
 import '../../../../core/utils/app_constants.dart';
 import '../../controllers/home_controller.dart';
 
@@ -79,13 +80,13 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                 child: const Icon(Icons.key_rounded, color: AppColors.primaryLight, size: 22),
               ),
               const SizedBox(width: 14),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Google Gemini API Settings',
-                      style: TextStyle(
+                      style: AppTypography.font(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: AppColors.textPrimary,
@@ -93,7 +94,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                     ),
                     Text(
                       'Free tier supported (Google AI Studio)',
-                      style: TextStyle(
+                      style: AppTypography.font(
                         fontSize: 12,
                         color: AppColors.textSecondary,
                       ),
@@ -122,9 +123,9 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'You can get a free Gemini API Key from Google AI Studio. You can also define it in your .env file as GEMINI_API_KEY.',
-                        style: TextStyle(fontSize: 12, color: AppColors.textSecondary, height: 1.4),
+                        style: AppTypography.font(fontSize: 12, color: AppColors.textSecondary, height: 1.4),
                       ),
                       const SizedBox(height: 6),
                       InkWell(
@@ -133,25 +134,25 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                             const ClipboardData(text: AppConstants.geminiStudioApiKeyUrl),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('AI Studio URL copied to clipboard!'),
-                              duration: Duration(seconds: 2),
+                            SnackBar(
+                              content: Text('AI Studio URL copied to clipboard!', style: AppTypography.font()),
+                              duration: const Duration(seconds: 2),
                             ),
                           );
                         },
-                        child: const Row(
+                        child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
                               'Copy AI Studio Link',
-                              style: TextStyle(
+                              style: AppTypography.font(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.secondary,
                               ),
                             ),
-                            SizedBox(width: 4),
-                            Icon(Icons.copy, size: 13, color: AppColors.secondary),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.copy, size: 13, color: AppColors.secondary),
                           ],
                         ),
                       ),
@@ -164,9 +165,9 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
           const SizedBox(height: 18),
 
           // API Key Input
-          const Text(
+          Text(
             'API Key',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: AppColors.textSecondary,
@@ -176,7 +177,7 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
           TextField(
             controller: _textController,
             obscureText: _obscureText,
-            style: const TextStyle(fontSize: 14, color: AppColors.textPrimary, fontFamily: 'monospace'),
+            style: AppTypography.mono(fontSize: 14, color: AppColors.textPrimary),
             decoration: InputDecoration(
               hintText: 'AIzaSy...',
               prefixIcon: const Icon(Icons.lock_outline, size: 18, color: AppColors.textMuted),
@@ -197,9 +198,9 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
           const SizedBox(height: 16),
 
           // Model Selection
-          const Text(
+          Text(
             'Preferred Model',
-            style: TextStyle(
+            style: AppTypography.font(
               fontSize: 13,
               fontWeight: FontWeight.w600,
               color: AppColors.textSecondary,
@@ -218,11 +219,11 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                 value: widget.controller.selectedModel.value,
                 dropdownColor: AppColors.surface,
                 isExpanded: true,
-                style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
+                style: AppTypography.font(color: AppColors.textPrimary, fontSize: 14),
                 items: AppConstants.availableModels.map((m) {
                   return DropdownMenuItem(
                     value: m,
-                    child: Text(m),
+                    child: Text(m, style: AppTypography.font()),
                   );
                 }).toList(),
                 onChanged: (val) {
@@ -250,9 +251,9 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                     ),
                     onPressed: () async {
                       await widget.controller.saveApiKey('');
-                      Navigator.pop(context);
+                      if (mounted) Navigator.pop(context);
                     },
-                    child: const Text('Clear'),
+                    child: Text('Clear', style: AppTypography.font()),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -264,14 +265,14 @@ class _ApiKeyDialogState extends State<ApiKeyDialog> {
                     final key = _textController.text.trim();
                     if (key.isNotEmpty) {
                       await widget.controller.saveApiKey(key);
-                      Navigator.pop(context);
+                      if (mounted) Navigator.pop(context);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please enter a valid API Key.')),
+                        SnackBar(content: Text('Please enter a valid API Key.', style: AppTypography.font())),
                       );
                     }
                   },
-                  child: const Text('Save API Key'),
+                  child: Text('Save API Key', style: AppTypography.font(fontWeight: FontWeight.bold)),
                 ),
               ),
             ],

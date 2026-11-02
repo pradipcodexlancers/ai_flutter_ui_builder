@@ -35,3 +35,4 @@ class AppConstants {
       'https://aistudio.google.com/app/apikey';
   static const String flutterDocsUrl = 'https://docs.flutter.dev/';
 }
+
