@@ -66,5 +66,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your photo library to select UI screenshots for code generation.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera to capture UI screenshots for code generation.</string>
 </dict>
 </plist>
