@@ -171,6 +171,14 @@ class DynamicUiRenderer extends StatelessWidget {
         return _buildListTile(data);
       case 'switch':
         return _buildSwitch(data);
+      case 'expanded':
+      case 'flexible':
+        if (data['child'] is Map<String, dynamic>) {
+          return _buildWidget(data['child']);
+        }
+        return const SizedBox.shrink();
+      case 'spacer':
+        return const SizedBox(height: 16, width: 16);
       default:
         return const SizedBox.shrink();
     }
@@ -188,7 +196,7 @@ class DynamicUiRenderer extends StatelessWidget {
       }
     }
 
-    final crossAlign = _parseCrossAxisAlignment(data['crossAxisAlignment']);
+    final crossAlign = _parseColumnCrossAxisAlignment(data['crossAxisAlignment']);
     final mainAlign = _parseMainAxisAlignment(data['mainAxisAlignment']);
 
     Widget col = Column(
@@ -222,12 +230,13 @@ class DynamicUiRenderer extends StatelessWidget {
       }
     }
 
-    final crossAlign = _parseCrossAxisAlignment(data['crossAxisAlignment']);
+    final crossAlign = _parseRowCrossAxisAlignment(data['crossAxisAlignment']);
     final mainAlign = _parseMainAxisAlignment(data['mainAxisAlignment']);
 
     return Row(
       mainAxisAlignment: mainAlign,
       crossAxisAlignment: crossAlign,
+      mainAxisSize: MainAxisSize.max,
       children: children,
     );
   }
@@ -609,7 +618,16 @@ class DynamicUiRenderer extends StatelessWidget {
     return TextAlign.left;
   }
 
-  CrossAxisAlignment _parseCrossAxisAlignment(dynamic align) {
+  CrossAxisAlignment _parseRowCrossAxisAlignment(dynamic align) {
+    final str = align?.toString().toLowerCase() ?? '';
+    if (str == 'start' || str == 'top') return CrossAxisAlignment.start;
+    if (str == 'end' || str == 'bottom') return CrossAxisAlignment.end;
+    if (str == 'baseline') return CrossAxisAlignment.baseline;
+    // Row inside vertical scrollable must NEVER use stretch, as vertical height is unbounded.
+    return CrossAxisAlignment.center;
+  }
+
+  CrossAxisAlignment _parseColumnCrossAxisAlignment(dynamic align) {
     final str = align?.toString().toLowerCase() ?? '';
     if (str == 'center') return CrossAxisAlignment.center;
     if (str == 'start') return CrossAxisAlignment.start;

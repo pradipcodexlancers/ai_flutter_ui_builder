@@ -32,6 +32,7 @@ class HomeView extends GetView<HomeController> {
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Container(
             padding: const EdgeInsets.all(8),
@@ -42,22 +43,27 @@ class HomeView extends GetView<HomeController> {
             child: const Icon(Icons.flutter_dash, color: Colors.white, size: 20),
           ),
           const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'UI Architect AI',
-                style: AppTypography.font(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: -0.2,
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'UI Architect AI',
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.font(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: -0.2,
+                  ),
                 ),
-              ),
-              Text(
-                'Gemini-Powered Flutter Builder',
-                style: AppTypography.font(fontSize: 11, color: AppColors.textSecondary),
-              ),
-            ],
+                Text(
+                  'Gemini-Powered Flutter Builder',
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.font(fontSize: 11, color: AppColors.textSecondary),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -150,7 +156,7 @@ class HomeView extends GetView<HomeController> {
                     const Icon(Icons.auto_awesome, size: 14, color: AppColors.primaryLight),
                     const SizedBox(width: 6),
                     Text(
-                      'Gemini 2.5 Flash Vision',
+                      'Gemini 3.5 Flash Vision',
                       style: AppTypography.font(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,

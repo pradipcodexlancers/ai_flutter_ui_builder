@@ -100,14 +100,16 @@ class DemoScreen extends StatelessWidget {
         duration: const Duration(seconds: 3),
         margin: const EdgeInsets.all(16),
       );
-    } catch (e) {
+    } catch (e, stack) {
+      debugPrint('❌ [REGENERATION ERROR] $e');
+      debugPrint('❌ Stack trace:\n$stack');
       Get.snackbar(
         'Regeneration Failed',
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: const Color(0xFFEF4444),
         colorText: Colors.white,
-        duration: const Duration(seconds: 5),
+        duration: const Duration(seconds: 8),
         margin: const EdgeInsets.all(16),
       );
     } finally {

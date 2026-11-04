@@ -67,15 +67,17 @@ class ImageUploadCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            spacing: 12,
+            runSpacing: 10,
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               ElevatedButton.icon(
                 onPressed: controller.pickImageFromGallery,
                 icon: const Icon(Icons.photo_library_outlined, size: 18),
                 label: Text('Choose Photo', style: AppTypography.font(fontWeight: FontWeight.w600)),
               ),
-              const SizedBox(width: 12),
               OutlinedButton.icon(
                 onPressed: controller.pickImageFromCamera,
                 icon: const Icon(Icons.camera_alt_outlined, size: 18),

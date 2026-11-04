@@ -27,8 +27,8 @@ migrate_working_dir/
 /build/
 
 # Environment variables
-.env
 
 # User-specific stuff
-.vscode/
 
+config.bat
+node_modules
