@@ -10,11 +10,12 @@ class AppConstants {
   static const String keySelectedModel = 'gemini_selected_model';
 
   // Gemini Models
-  // Google AI Studio supports gemini-2.5-flash, gemini-1.5-flash, etc.
-  static const String defaultGeminiModel = 'gemini-2.5-flash';
+  // Google AI Studio active models: gemini-3.5-flash, gemini-3.6-flash, gemini-flash-lite-latest
+  static const String defaultGeminiModel = 'gemini-3.5-flash';
   static const List<String> availableModels = [
-    'gemini-2.5-flash',
-    'gemini-1.5-flash',
+    'gemini-3.5-flash',
+    'gemini-3.6-flash',
+    'gemini-flash-lite-latest',
   ];
 
   // API endpoints

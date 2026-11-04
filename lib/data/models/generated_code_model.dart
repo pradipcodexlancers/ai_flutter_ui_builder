@@ -8,7 +8,7 @@ class GeneratedCodeModel {
     required this.code,
     this.versionNote,
     DateTime? generatedAt,
-    this.modelName = 'gemini-2.5-flash',
+    this.modelName = 'gemini-3.5-flash',
   }) : generatedAt = generatedAt ?? DateTime.now();
 
   int get lineCount => code.split('\n').length;
