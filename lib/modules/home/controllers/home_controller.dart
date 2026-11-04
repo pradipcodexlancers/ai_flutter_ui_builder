@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../core/routes/app_routes.dart';
 import '../../../core/utils/app_constants.dart';
@@ -137,7 +137,9 @@ class HomeController extends GetxController {
           'image': selectedImage.value,
         },
       );
-    } catch (e) {
+    } catch (e, stack) {
+      debugPrint('❌ [HOME CONTROLLER ERROR] Analysis failed: $e');
+      debugPrint('❌ Stack trace:\n$stack');
       _showErrorSnackbar('Analysis Failed', e.toString());
     } finally {
       isLoading.value = false;
@@ -145,6 +147,7 @@ class HomeController extends GetxController {
   }
 
   void _showErrorSnackbar(String title, String message) {
+    debugPrint('📢 Popup Error: $title - $message');
     Get.snackbar(
       title,
       message,
@@ -152,7 +155,22 @@ class HomeController extends GetxController {
       backgroundColor: const Color(0xFFEF4444),
       colorText: Colors.white,
       margin: const EdgeInsets.all(16),
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 8),
+      mainButton: TextButton(
+        onPressed: () {
+          Clipboard.setData(ClipboardData(text: message));
+          Get.snackbar(
+            'Copied',
+            'Error message copied to clipboard.',
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: const Color(0xFF10B981),
+            colorText: Colors.white,
+            duration: const Duration(seconds: 2),
+            margin: const EdgeInsets.all(16),
+          );
+        },
+        child: const Text('COPY', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      ),
     );
   }
 

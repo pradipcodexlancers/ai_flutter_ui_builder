@@ -1,5 +1,7 @@
 import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_typography.dart';
 import '../../controllers/home_controller.dart';
@@ -50,7 +52,10 @@ class SampleScreenshotsSheet extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             'Test the Gemini AI conversion instantly with these pre-designed mobile screens.',
-            style: AppTypography.font(fontSize: 13, color: AppColors.textSecondary),
+            style: AppTypography.font(
+              fontSize: 13,
+              color: AppColors.textSecondary,
+            ),
           ),
           const SizedBox(height: 20),
           _buildSampleOption(
@@ -74,7 +79,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
           _buildSampleOption(
             context: context,
             title: 'Social Profile & Stats',
-            description: 'Profile avatar, follower count chips, bio, and follow button.',
+            description:
+                'Profile avatar, follower count chips, bio, and follow button.',
             icon: Icons.person_pin_outlined,
             color: const Color(0xFFEC4899),
             presetType: 2,
@@ -100,8 +106,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         final name = presetType == 0
             ? 'ecommerce_checkout.png'
             : presetType == 1
-                ? 'fintech_wallet.png'
-                : 'profile_stats.png';
+            ? 'fintech_wallet.png'
+            : 'profile_stats.png';
         controller.loadSampleImage(name: name, bytes: bytes);
       },
       borderRadius: BorderRadius.circular(16),
@@ -138,12 +144,19 @@ class SampleScreenshotsSheet extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     description,
-                    style: AppTypography.font(fontSize: 12, color: AppColors.textMuted),
+                    style: AppTypography.font(
+                      fontSize: 12,
+                      color: AppColors.textMuted,
+                    ),
                   ),
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios, size: 14, color: AppColors.textMuted),
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 14,
+              color: AppColors.textMuted,
+            ),
           ],
         ),
       ),
@@ -164,8 +177,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
       ..color = type == 0
           ? const Color(0xFF6366F1)
           : type == 1
-              ? const Color(0xFF0F172A)
-              : const Color(0xFFEC4899);
+          ? const Color(0xFF0F172A)
+          : const Color(0xFFEC4899);
     canvas.drawRect(const Rect.fromLTWH(0, 0, 390, 90), barPaint);
 
     final titlePainter = TextPainter(
@@ -173,8 +186,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         text: type == 0
             ? 'Checkout Order'
             : type == 1
-                ? 'Crypto Wallet'
-                : 'User Profile',
+            ? 'Crypto Wallet'
+            : 'User Profile',
         style: const TextStyle(
           color: Colors.white,
           fontSize: 20,
@@ -199,8 +212,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         text: type == 0
             ? 'Wireless Noise-Canceling Headphones\n\$299.00  •  Qty: 1\nColor: Space Gray'
             : type == 1
-                ? 'Total Portfolio Balance\n\$24,850.50 USD\n+14.2% this month'
-                : 'Alex Rivera\nSenior Flutter Engineer\n@alexrivera • 1.2k followers',
+            ? 'Total Portfolio Balance\n\$24,850.50 USD\n+14.2% this month'
+            : 'Alex Rivera\nSenior Flutter Engineer\n@alexrivera • 1.2k followers',
         style: const TextStyle(
           color: Color(0xFF1E293B),
           fontSize: 15,
@@ -226,8 +239,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         text: type == 0
             ? 'Promo code: SAVE20'
             : type == 1
-                ? 'Recipient wallet address (0x...)'
-                : 'Write a message to Alex...',
+            ? 'Recipient wallet address (0x...)'
+            : 'Write a message to Alex...',
         style: const TextStyle(color: Color(0xFF64748B), fontSize: 14),
       ),
       textDirection: TextDirection.ltr,
@@ -247,8 +260,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         text: type == 0
             ? 'Subtotal: \$299.00\nDiscount (20%): -\$59.80\nShipping: Free\nTotal: \$239.20'
             : type == 1
-                ? 'Recent Activity:\n• Received 0.45 ETH from Bob\n• Sent \$150 USDC to Alice\n• Staking reward: +0.02 ETH'
-                : 'Activity Highlights:\n• 15 Open Source Repositories\n• 482 Contributions this year\n• Top languages: Dart, Kotlin, Swift',
+            ? 'Recent Activity:\n• Received 0.45 ETH from Bob\n• Sent \$150 USDC to Alice\n• Staking reward: +0.02 ETH'
+            : 'Activity Highlights:\n• 15 Open Source Repositories\n• 482 Contributions this year\n• Top languages: Dart, Kotlin, Swift',
         style: const TextStyle(
           color: Color(0xFF334155),
           fontSize: 14,
@@ -266,8 +279,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
       ..color = type == 0
           ? const Color(0xFF6366F1)
           : type == 1
-              ? const Color(0xFF10B981)
-              : const Color(0xFFEC4899);
+          ? const Color(0xFF10B981)
+          : const Color(0xFFEC4899);
     final btnRrect = RRect.fromRectAndRadius(
       const Rect.fromLTWH(20, 710, 350, 56),
       const Radius.circular(14),
@@ -279,8 +292,8 @@ class SampleScreenshotsSheet extends StatelessWidget {
         text: type == 0
             ? 'Confirm & Pay \$239.20'
             : type == 1
-                ? 'Send Funds'
-                : 'Follow Alex',
+            ? 'Send Funds'
+            : 'Follow Alex',
         style: const TextStyle(
           color: Colors.white,
           fontSize: 16,

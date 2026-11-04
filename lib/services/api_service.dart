@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,8 +58,15 @@ class ApiService {
   /// Get currently selected model
   Future<String> getSelectedModel() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(AppConstants.keySelectedModel) ??
-        AppConstants.defaultGeminiModel;
+    final model = prefs.getString(AppConstants.keySelectedModel);
+    if (model == null ||
+        model.contains('1.5') ||
+        model.contains('2.0') ||
+        model.contains('2.5')) {
+      await prefs.setString(AppConstants.keySelectedModel, AppConstants.defaultGeminiModel);
+      return AppConstants.defaultGeminiModel; // 'gemini-3.5-flash'
+    }
+    return model;
   }
 
   /// Save preferred model
@@ -178,6 +186,9 @@ class ApiService {
       '${AppConstants.geminiBaseUrl}/$model:generateContent?key=$apiKey',
     );
 
+    debugPrint('🚀 [GEMINI REQUEST] Calling model: $model');
+    debugPrint('🚀 [GEMINI REQUEST] URI: ${uri.replace(queryParameters: {'key': '***'})}');
+
     http.Response response;
     try {
       response = await _client
@@ -188,21 +199,63 @@ class ApiService {
           )
           .timeout(const Duration(seconds: 90));
     } on TimeoutException {
+      debugPrint('❌ [GEMINI TIMEOUT] Request timed out after 90 seconds.');
       throw ApiServiceException(
         'Connection to Gemini API timed out after 90 seconds. Please check your internet connection and try again.',
       );
     } catch (e) {
+      debugPrint('❌ [GEMINI NETWORK ERROR] $e');
       throw ApiServiceException('Network error connecting to Gemini API: $e');
     }
 
+    debugPrint('📥 [GEMINI RESPONSE] Status Code: ${response.statusCode}');
+
+    // If model is not found, deprecated or unsupported, automatically fallback to active models
+    if (response.statusCode == 404 ||
+        response.body.contains('not found') ||
+        response.body.contains('no longer available') ||
+        response.body.contains('not supported')) {
+      if (model != 'gemini-3.5-flash') {
+        debugPrint('⚠️ [GEMINI AUTO-FALLBACK] Model "$model" unavailable. Retrying with "gemini-3.5-flash"...');
+        return _executeGeminiRequest(
+          model: 'gemini-3.5-flash',
+          apiKey: apiKey,
+          requestBody: requestBody,
+        );
+      } else if (model != 'gemini-flash-lite-latest') {
+        debugPrint('⚠️ [GEMINI AUTO-FALLBACK] Retrying with "gemini-flash-lite-latest"...');
+        return _executeGeminiRequest(
+          model: 'gemini-flash-lite-latest',
+          apiKey: apiKey,
+          requestBody: requestBody,
+        );
+      }
+    }
+
+    // If high demand spike (503), retry with flash-lite-latest
+    if (response.statusCode == 503 && model != 'gemini-flash-lite-latest') {
+      debugPrint('⚠️ [GEMINI SPIKE 503] Model "$model" busy. Retrying with "gemini-flash-lite-latest"...');
+      return _executeGeminiRequest(
+        model: 'gemini-flash-lite-latest',
+        apiKey: apiKey,
+        requestBody: requestBody,
+      );
+    }
+
     if (response.statusCode != 200) {
-      _handleHttpErrors(response);
+      _handleHttpErrors(response, model);
     }
 
     return _parseGeminiResponse(response.body);
   }
 
-  void _handleHttpErrors(http.Response response) {
+  void _handleHttpErrors(http.Response response, String model) {
+    debugPrint('❌ ══════════════ GEMINI API ERROR DETAILS ══════════════');
+    debugPrint('❌ Model: $model');
+    debugPrint('❌ Status Code: ${response.statusCode}');
+    debugPrint('❌ Response Body: ${response.body}');
+    debugPrint('❌ ═══════════════════════════════════════════════════════');
+
     try {
       final errorJson = jsonDecode(response.body);
       final errorObj = errorJson['error'];
@@ -219,7 +272,7 @@ class ApiService {
         );
       } else if (response.statusCode == 403 || response.statusCode == 401) {
         throw ApiServiceException(
-          'Unauthorized: Check your Gemini API Key or permissions. (${message.toString()})',
+          'Unauthorized: Check your Gemini API Key or permissions. ($message)',
           statusCode: response.statusCode,
           isApiKeyError: true,
         );
